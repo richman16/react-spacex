@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.PureComponent {
+//  Estado inicial de la variable a usar
+    state = {
+        capsules: [],
+    };
+
+//  React Lifecycle
+    componentDidMount () {
+        axios.get('https://api.spacexdata.com/v3/capsules')
+        // Respuesta si se consigue los datos
+        .then(response => {
+            // Respuesta 
+            this.setState({
+                capsules: response.data,
+            })
+        })
+
+// Caputar el error
+        .catch(err => console.error(err));
+    }
+
+    render () {
+        return (
+            <div className="App">
+                <h2>Capsules</h2>
+                { this.state.capsules.length == 0
+                ? 'No Capsules' 
+                : this.state.capsules.map(capsule => <li>{capsule.type} - {capsule.details}</li>) }
+            </div>
+        );
+    }
+
 }
 
 export default App;

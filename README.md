@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Proyecto React con Space X API
+
+## Autor
+
+* **Ricardo Castillo** - *IT Engineer* - [richman16](https://github.com/richman16/react-)
+
+Este proyecto fue creado en la terminal con:
+
+### `npx create-react-app react-spacex`
+
+Se instaló la siguiente libreria adicional al proyecto básico:
+
+### `npm i --save axios`
+
 
 ## Available Scripts
 
